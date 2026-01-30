@@ -1,0 +1,10 @@
+# Always normalize text files to LF
+* text=auto eol=lf
+
+# Binary files (images, models)
+*.png binary
+*.jpg binary
+*.glb binary
+*.fbx binary
+*.unity binary
+*.prefab binary
