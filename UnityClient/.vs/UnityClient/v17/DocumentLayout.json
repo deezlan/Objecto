@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Objecto\\UnityClient\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6C9E1067-45D3-8D51-00C4-572C36C1182E}|Assembly-CSharp.csproj|c:\\objecto\\unityclient\\assets\\scripts\\hardwarerig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C9E1067-45D3-8D51-00C4-572C36C1182E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\hardwarerig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Objecto\\UnityClient\\Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.12\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.12\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
@@ -14,15 +18,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HardwareRig.cs",
+              "DocumentMoniker": "C:\\Objecto\\UnityClient\\Assets\\Scripts\\HardwareRig.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\HardwareRig.cs",
+              "ToolTip": "C:\\Objecto\\UnityClient\\Assets\\Scripts\\HardwareRig.cs",
+              "RelativeToolTip": "Assets\\Scripts\\HardwareRig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-08T17:03:21.775Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Lit.shader",
               "DocumentMoniker": "C:\\Objecto\\UnityClient\\Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.12\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.12\\Shaders\\Lit.shader",
@@ -30,7 +47,8 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.12\\Shaders\\Lit.shader",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2026-02-01T16:32:24.695Z"
+              "WhenOpened": "2026-02-01T16:32:24.695Z",
+              "EditorCaption": ""
             }
           ]
         }
