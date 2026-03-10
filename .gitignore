@@ -15,6 +15,7 @@ MemoryCaptures/
 *.csproj
 *.sln
 *.suo
+.vs/
 
 # Unity Editor Layout
 
