@@ -40,8 +40,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         //Create Runner
         CreateRunner();
-        //Load Scene
-        await LoadScene();
         //ConnectSession
         await Connect(roomCode);
     }
@@ -50,15 +48,14 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         //Create Runner
         CreateRunner();
-        //Load Scene
-        await LoadScene();
         //ConnectSession
         await Connect(roomCode);
     }
 
     public void CreateRunner()
     {
-        Runner = Instantiate(_runnerPrefab, transform).GetComponent<NetworkRunner>();
+        Runner = Instantiate(_runnerPrefab).GetComponent<NetworkRunner>();
+        DontDestroyOnLoad(Runner.gameObject);
         Runner.AddCallbacks(this);
     }
 
@@ -78,7 +75,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             GameMode = GameMode.Shared,
             SessionName = SessionName,
-            SceneManager = GetComponent<NetworkSceneManagerDefault>(),
+            SceneManager = Runner.GetComponent<NetworkSceneManagerDefault>(),
             Scene = SceneRef.FromIndex(1)
 
         };
