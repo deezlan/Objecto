@@ -14,3 +14,10 @@ MemoryCaptures/
 .vscode/
 *.csproj
 *.sln
+*.suo
+.vs/
+
+# Unity Editor Layout
+
+Document.Layout.json
+DocumentLayout.backup.json
