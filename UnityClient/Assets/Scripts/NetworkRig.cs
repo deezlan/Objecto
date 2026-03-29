@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using Photon.Voice.Unity;
 
 public class NetworkRig : NetworkBehaviour
 {
@@ -32,7 +33,22 @@ public class NetworkRig : NetworkBehaviour
             if (hardwareRig == null)
                 Debug.LogError("Missing HardwareRig in the scene");
         }
-        // else it means that this is a client
+        else
+        {
+            // Wire remote speaker to voice client
+            Speaker speaker = GetComponentInChildren<Speaker>();
+            if (speaker != null)
+            {
+                AudioSource audioSource = speaker.GetComponent<AudioSource>();
+                if (audioSource != null)
+                {
+                    audioSource.spatialBlend = 1f;
+                    audioSource.minDistance = 1f;
+                    audioSource.maxDistance = 10f;
+                    audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
+                }
+            }
+        }
     }
 
     public override void FixedUpdateNetwork()

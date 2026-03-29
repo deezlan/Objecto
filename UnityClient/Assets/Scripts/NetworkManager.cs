@@ -1,5 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
+using Photon.Voice.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -85,6 +86,13 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     #region INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
+        if (player == runner.LocalPlayer)
+        {
+            VoiceConnection voiceConnection = Runner.GetComponent<VoiceConnection>();
+            if (voiceConnection != null)
+                voiceConnection.ConnectUsingSettings();
+        }
+
         Debug.Log("<<<<<<<< A new player joined to the session >>>>>>>");
         Debug.Log("<<<<<<< IsMasterClient >>>>>>>>" + player.IsMasterClient);
         Debug.Log("<<<<<<< PlayerID >>>>>>>>" + player.PlayerId);
