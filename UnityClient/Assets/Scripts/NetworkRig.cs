@@ -32,7 +32,6 @@ public class NetworkRig : NetworkBehaviour
             if (hardwareRig == null)
                 Debug.LogError("Missing HardwareRig in the scene");
         }
-        // else it means that this is a client
     }
 
     public override void FixedUpdateNetwork()

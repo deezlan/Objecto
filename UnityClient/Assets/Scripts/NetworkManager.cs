@@ -1,5 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
+using Photon.Voice.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
