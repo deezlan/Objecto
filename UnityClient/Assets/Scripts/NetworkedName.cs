@@ -14,20 +14,16 @@ public class NetworkedName : NetworkBehaviour
 
     public override void Spawned()
     {
-        if (IsLocalNetworkRig())
+        if (Object.HasStateAuthority)
         {
             // Hide own name tag
             nameTagObject.SetActive(false);
-            // Set name from device/random
-            string name = "Player " + Runner.LocalPlayer.PlayerId;
-            RPC_SetName(name);
+            // Set name directly since we have state authority
+            PlayerName = "Player " + Object.StateAuthority.PlayerId;
         }
-    }
-
-    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
-    public void RPC_SetName(string name)
-    {
-        PlayerName = name;
+        
+        // Always update text on spawn for late joiners
+        nameTagText.text = PlayerName.ToString();
     }
 
     private void OnNameChanged()
