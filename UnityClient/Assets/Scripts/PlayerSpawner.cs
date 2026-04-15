@@ -23,9 +23,12 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (player == runner.LocalPlayer && playerPrefab != null)
         {
-            //Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0.5f, UnityEngine.Random.Range(1, 5));
+            Vector3 spawnPosition = GetSpawnPosition();
+            Quaternion spawnRotation = GetSpawnRotation();
 
-            NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
+            NetworkObject networkPlayerObject = runner.Spawn(
+                playerPrefab, Vector3.zero, Quaternion.identity, player);
+
             // Keep track of the player avatars so we can remove it when they disconnect
             _spawnedUsers.Add(player, networkPlayerObject);
         }
@@ -40,6 +43,25 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
     #endregion
+
+    private Vector3 GetSpawnPosition()
+    {
+        // Only Task 1 (scene 2) has role-based positions
+        // Adjust these Vector3 values to match your table layout
+        if (NetworkManager.Instance.IsGuide)
+            return new Vector3(0f, 0f, 1.2f);  // Guide side of table
+        else
+            return new Vector3(0f, 0f, -1.2f); // Mover side of table
+    }
+
+    private Quaternion GetSpawnRotation()
+    {
+        // Guide and Mover face each other across the table
+        if (NetworkManager.Instance.IsGuide)
+            return Quaternion.Euler(0f, 180f, 0f);
+        else
+            return Quaternion.identity;
+    }
 
     #region Unsed INetworkRunnerCallbacks
     public void OnConnectedToServer(NetworkRunner runner)
