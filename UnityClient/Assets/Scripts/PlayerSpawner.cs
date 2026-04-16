@@ -48,8 +48,8 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
         {
             return NetworkManager.Instance.IsGuide
-                ? new Vector3(0f, 0f, 1.2f)
-                : new Vector3(0f, 0f, -1.2f);
+                ? new Vector3(-0.7f, 0f, 1.6f)
+                : new Vector3(-4.7f, 0f, 1.6f);
         }
         return Vector3.zero; // default for Warmup and Task 2
     }
@@ -59,8 +59,8 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
         {
             return NetworkManager.Instance.IsGuide
-                ? Quaternion.Euler(0f, 180f, 0f)
-                : Quaternion.identity;
+                ? Quaternion.Euler(0f, -90f, 0f)
+                : Quaternion.Euler(0f, 90f, 0f);
         }
         return Quaternion.identity;
     }
