@@ -99,7 +99,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
         Debug.Log("<<<<<<< Runner Shutdown >>>>>>>>");
-
     }
     #endregion
 
@@ -144,8 +143,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     {
     }
 
-    
-
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress)
     {
     }
@@ -165,7 +162,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
     }
-
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
     {
