@@ -23,9 +23,12 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (player == runner.LocalPlayer && playerPrefab != null)
         {
-            //Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0.5f, UnityEngine.Random.Range(1, 5));
+            Vector3 spawnPosition = GetSpawnPosition();
+            Quaternion spawnRotation = GetSpawnRotation();
 
-            NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
+            NetworkObject networkPlayerObject = runner.Spawn(
+                playerPrefab, spawnPosition, spawnRotation, player);
+
             // Keep track of the player avatars so we can remove it when they disconnect
             _spawnedUsers.Add(player, networkPlayerObject);
         }
@@ -40,6 +43,28 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
     #endregion
+
+    private Vector3 GetSpawnPosition()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            return NetworkManager.Instance.IsGuide
+                ? new Vector3(0f, 0f, 1.2f)
+                : new Vector3(0f, 0f, -1.2f);
+        }
+        return Vector3.zero; // default for Warmup and Task 2
+    }
+
+    private Quaternion GetSpawnRotation()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            return NetworkManager.Instance.IsGuide
+                ? Quaternion.Euler(0f, 180f, 0f)
+                : Quaternion.identity;
+        }
+        return Quaternion.identity;
+    }
 
     #region Unsed INetworkRunnerCallbacks
     public void OnConnectedToServer(NetworkRunner runner)

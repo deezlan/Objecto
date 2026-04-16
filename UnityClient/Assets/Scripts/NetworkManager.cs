@@ -10,13 +10,14 @@ using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 {
-    //creating a singleton
+    // Creating a singleton
     public static NetworkManager Instance { get; private set; }
-
-    [SerializeField]
-    private GameObject _runnerPrefab;
-
     public NetworkRunner Runner { get; private set; }
+    public bool IsGuide { get; private set; } = true;
+
+    [SerializeField] private GameObject _runnerPrefab;
+
+    private int _targetSceneIndex = 1;
 
     private void Awake()
     {
@@ -33,24 +34,20 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void Start()
     {
-        // fixing the server to a perticular region
+        // Fixing the server to a perticular region
         Fusion.Photon.Realtime.PhotonAppSettings.Global.AppSettings.FixedRegion = "eu";
     }
 
-    public async void CreateSession(string roomCode)
+    public async void ConnectSession(string roomCode)
     {
-        //Create Runner
         CreateRunner();
-        //ConnectSession
         await Connect(roomCode);
     }
 
-    public async void JoinSession(string roomCode)
+    public void SetSessionConfig(int sceneIndex, bool isGuide)
     {
-        //Create Runner
-        CreateRunner();
-        //ConnectSession
-        await Connect(roomCode);
+        _targetSceneIndex = sceneIndex;
+        IsGuide = isGuide;
     }
 
     public void CreateRunner()
@@ -60,13 +57,12 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         Runner.AddCallbacks(this);
     }
 
-    public async Task LoadScene()
+    public async Task Shutdown()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
-
-        while (!asyncLoad.isDone)
+        if (Runner != null)
         {
-            await Task.Yield();
+            await Runner.Shutdown(destroyGameObject: true);
+            Runner = null;
         }
     }
 
@@ -77,7 +73,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             GameMode = GameMode.Shared,
             SessionName = SessionName,
             SceneManager = Runner.GetComponent<NetworkSceneManagerDefault>(),
-            Scene = SceneRef.FromIndex(1)
+            Scene = SceneRef.FromIndex(_targetSceneIndex)
 
         };
         await Runner.StartGame(args);
