@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 {
-    //creating a singleton
+    // Creating a singleton
     public static NetworkManager Instance { get; private set; }
     public NetworkRunner Runner { get; private set; }
     public bool IsGuide { get; private set; } = true;
@@ -34,15 +34,13 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void Start()
     {
-        // fixing the server to a perticular region
+        // Fixing the server to a perticular region
         Fusion.Photon.Realtime.PhotonAppSettings.Global.AppSettings.FixedRegion = "eu";
     }
 
     public async void ConnectSession(string roomCode)
     {
-        //Create Runner
         CreateRunner();
-        //ConnectSession
         await Connect(roomCode);
     }
 
@@ -52,22 +50,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         IsGuide = isGuide;
     }
 
-    public async void CreateSession(string roomCode)
-    {
-        //Create Runner
-        CreateRunner();
-        //ConnectSession
-        await Connect(roomCode);
-    }
-
-    public async void JoinSession(string roomCode)
-    {
-        //Create Runner
-        CreateRunner();
-        //ConnectSession
-        await Connect(roomCode);
-    }
-
     public void CreateRunner()
     {
         Runner = Instantiate(_runnerPrefab).GetComponent<NetworkRunner>();
@@ -75,13 +57,12 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         Runner.AddCallbacks(this);
     }
 
-    public async Task LoadScene()
+    public async Task Shutdown()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
-
-        while (!asyncLoad.isDone)
+        if (Runner != null)
         {
-            await Task.Yield();
+            await Runner.Shutdown(destroyGameObject: true);
+            Runner = null;
         }
     }
 

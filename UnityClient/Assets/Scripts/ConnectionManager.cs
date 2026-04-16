@@ -9,6 +9,12 @@ public class ConnectionManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown scenarioDropdown; // 0=Warmup, 1=Task 1, 2=Task 2
     [SerializeField] private TMP_Dropdown roleDropdown;     // 0=Guide, 1=Mover
     [SerializeField] private GameObject roleText;
+    [SerializeField] private UnityEngine.UI.Button connectButton;
+
+    private void Start()
+    {
+        connectButton.onClick.AddListener(ConnectRoom);
+    }
 
     public void ConnectRoom()
     {
@@ -23,17 +29,6 @@ public class ConnectionManager : MonoBehaviour
         bool isTask1 = index == 1;
         roleText.SetActive(isTask1);
         roleDropdown.gameObject.SetActive(isTask1);
-    }
-
-    public void CreateRoom()
-    {
-        NetworkManager.Instance.CreateSession(roomCodeInputField.text);
-    }
-
-    public void JoinRoom()
-    {
-        NetworkManager.Instance.JoinSession(roomCodeInputField.text);
-
     }
 
     private int GetSceneIndex()
