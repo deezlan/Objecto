@@ -27,7 +27,7 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Quaternion spawnRotation = GetSpawnRotation();
 
             NetworkObject networkPlayerObject = runner.Spawn(
-                playerPrefab, Vector3.zero, Quaternion.identity, player);
+                playerPrefab, spawnPosition, spawnRotation, player);
 
             // Keep track of the player avatars so we can remove it when they disconnect
             _spawnedUsers.Add(player, networkPlayerObject);
@@ -46,21 +46,24 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     private Vector3 GetSpawnPosition()
     {
-        // Only Task 1 (scene 2) has role-based positions
-        // Adjust these Vector3 values to match your table layout
-        if (NetworkManager.Instance.IsGuide)
-            return new Vector3(0f, 0f, 1.2f);  // Guide side of table
-        else
-            return new Vector3(0f, 0f, -1.2f); // Mover side of table
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            return NetworkManager.Instance.IsGuide
+                ? new Vector3(0f, 0f, 1.2f)
+                : new Vector3(0f, 0f, -1.2f);
+        }
+        return Vector3.zero; // default for Warmup and Task 2
     }
 
     private Quaternion GetSpawnRotation()
     {
-        // Guide and Mover face each other across the table
-        if (NetworkManager.Instance.IsGuide)
-            return Quaternion.Euler(0f, 180f, 0f);
-        else
-            return Quaternion.identity;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            return NetworkManager.Instance.IsGuide
+                ? Quaternion.Euler(0f, 180f, 0f)
+                : Quaternion.identity;
+        }
+        return Quaternion.identity;
     }
 
     #region Unsed INetworkRunnerCallbacks
