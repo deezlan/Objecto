@@ -27,8 +27,23 @@ public class ConnectionManager : MonoBehaviour
     public void OnScenarioChanged(int index)
     {
         bool isTask1 = index == 1;
-        roleText.SetActive(isTask1);
-        roleDropdown.gameObject.SetActive(isTask1);
+        bool isTask2 = index == 2;
+
+        roleText.SetActive(isTask1 || isTask2);
+        roleDropdown.gameObject.SetActive(isTask1 || isTask2);
+
+        if (isTask1)
+        {
+            roleDropdown.options[0].text = "Guide";
+            roleDropdown.options[1].text = "Mover";
+        }
+        else if (isTask2)
+        {
+            roleDropdown.options[0].text = "Player A";
+            roleDropdown.options[1].text = "Player B";
+        }
+
+        roleDropdown.RefreshShownValue();
     }
 
     private int GetSceneIndex()
