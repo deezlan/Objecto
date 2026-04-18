@@ -4,11 +4,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject menuCanvas;
     [SerializeField] private InputActionReference pauseAction; // e.g. Menu button
+    [SerializeField] private TextMeshProUGUI roomCodeText;
+    [SerializeField] private TextMeshProUGUI scenarioText;
+    [SerializeField] private TextMeshProUGUI roleText;
 
     private Camera _camera;
     private bool _isPaused = false;
@@ -28,6 +32,19 @@ public class PauseMenu : MonoBehaviour
     {
         _isPaused = !_isPaused;
         menuCanvas.SetActive(_isPaused);
+
+        if(_isPaused)
+            UpdateInfoDisplay();
+    }
+
+    private void UpdateInfoDisplay()
+    {
+        roomCodeText.text = NetworkManager.Instance.RoomCode;
+        scenarioText.text = NetworkManager.Instance.GetScenarioName();
+
+        string role = NetworkManager.Instance.GetRoleName();
+        roleText.text = role != "" ? role : "";
+        roleText.gameObject.SetActive(role != "");
     }
 
     private void LateUpdate()

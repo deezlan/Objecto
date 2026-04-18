@@ -13,6 +13,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     // Creating a singleton
     public static NetworkManager Instance { get; private set; }
     public NetworkRunner Runner { get; private set; }
+    public string RoomCode { get; private set; }
     public bool IsGuide { get; private set; } = true;
 
     [SerializeField] private GameObject _runnerPrefab;
@@ -44,10 +45,11 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         await Connect(roomCode);
     }
 
-    public void SetSessionConfig(int sceneIndex, bool isGuide)
+    public void SetSessionConfig(int sceneIndex, bool isGuide, string roomCode)
     {
         _targetSceneIndex = sceneIndex;
         IsGuide = isGuide;
+        RoomCode = roomCode;
     }
 
     public void CreateRunner()
@@ -77,6 +79,27 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
         };
         await Runner.StartGame(args);
+    }
+
+    public string GetScenarioName()
+    {
+        return _targetSceneIndex switch
+        {
+            1 => "Warmup",
+            2 => "Task 1",
+            3 => "Task 2",
+            _ => "Unknown"
+        };
+    }
+
+    public string GetRoleName()
+    {
+        return _targetSceneIndex switch
+        {
+            2 => IsGuide ? "Guide" : "Mover",
+            3 => IsGuide ? "Player A" : "Player B",
+            _ => ""
+        };
     }
 
     #region INetworkRunnerCallbacks

@@ -20,7 +20,7 @@ public class ConnectionManager : MonoBehaviour
     {
         int sceneIndex = GetSceneIndex();
         bool isGuide = roleDropdown.value == 0;
-        NetworkManager.Instance.SetSessionConfig(sceneIndex, isGuide);
+        NetworkManager.Instance.SetSessionConfig(sceneIndex, isGuide, roomCodeInputField.text);
         NetworkManager.Instance.ConnectSession(roomCodeInputField.text);
     }
 
