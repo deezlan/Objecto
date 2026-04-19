@@ -808,7 +808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &719151411829171271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1673,6 +1673,7 @@ MonoBehaviour:
   roomCodeText: {fileID: 4810358160921112883}
   scenarioText: {fileID: 3727002965254149035}
   roleText: {fileID: 1238348098939836934}
+  roleLabel: {fileID: 6538993262194799270}
 --- !u!1 &5708469700330375723
 GameObject:
   m_ObjectHideFlags: 0

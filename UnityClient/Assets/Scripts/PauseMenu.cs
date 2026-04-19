@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roomCodeText;
     [SerializeField] private TextMeshProUGUI scenarioText;
     [SerializeField] private TextMeshProUGUI roleText;
+    [SerializeField] private TextMeshProUGUI roleLabel;
 
     private Camera _camera;
     private bool _isPaused = false;
@@ -45,6 +46,7 @@ public class PauseMenu : MonoBehaviour
         string role = NetworkManager.Instance.GetRoleName();
         roleText.text = role != "" ? role : "";
         roleText.gameObject.SetActive(role != "");
+        roleLabel.gameObject.SetActive(role != "");
     }
 
     private void LateUpdate()
