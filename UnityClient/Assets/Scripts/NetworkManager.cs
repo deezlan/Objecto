@@ -14,6 +14,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public static NetworkManager Instance { get; private set; }
     public NetworkRunner Runner { get; private set; }
     public string RoomCode { get; private set; }
+    public string PlayerName { get; private set; } = "Player";
     public bool IsGuide { get; private set; } = true;
 
     [SerializeField] private GameObject _runnerPrefab;
@@ -79,6 +80,11 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
         };
         await Runner.StartGame(args);
+    }
+
+    public void SetPlayerName(string name)
+    {
+        PlayerName = string.IsNullOrWhiteSpace(name) ? "Player" : name;
     }
 
     public string GetScenarioName()

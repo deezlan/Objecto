@@ -19,7 +19,7 @@ public class NetworkedName : NetworkBehaviour
             // Hide own name tag
             nameTagObject.SetActive(false);
             // Set name directly since we have state authority
-            PlayerName = "Player " + Object.StateAuthority.PlayerId;
+            PlayerName = NetworkManager.Instance.PlayerName;
         }
         
         // Always update text on spawn for late joiners

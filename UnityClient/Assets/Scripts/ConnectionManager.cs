@@ -6,7 +6,9 @@ using UnityEngine;
 public class ConnectionManager : MonoBehaviour
 {
     [SerializeField] private int minRoomCodeLength = 1;
+    [SerializeField] private int minPlayerNameLength = 3;
     [SerializeField] private TMP_InputField roomCodeInputField;
+    [SerializeField] private TMP_InputField playerNameInputField;
     [SerializeField] private TMP_Dropdown scenarioDropdown; // 0=Warmup, 1=Task 1, 2=Task 2
     [SerializeField] private TMP_Dropdown roleDropdown;     // 0=Guide, 1=Mover
     [SerializeField] private GameObject roleText;
@@ -15,12 +17,15 @@ public class ConnectionManager : MonoBehaviour
     private void Start()
     {
         connectButton.onClick.AddListener(ConnectRoom);
-        roomCodeInputField.onValueChanged.AddListener(OnRoomCodeChanged);
+        roomCodeInputField.onValueChanged.AddListener(OnRoomCodeAndPlayerNameChanged);
+        playerNameInputField.onValueChanged.AddListener(OnRoomCodeAndPlayerNameChanged);
         connectButton.interactable = false; // disabled until minimum met
     }
 
     public void ConnectRoom()
     {
+        NetworkManager.Instance.SetPlayerName(playerNameInputField.text);
+
         int sceneIndex = GetSceneIndex();
         bool isGuide = roleDropdown.value == 0;
         NetworkManager.Instance.SetSessionConfig(sceneIndex, isGuide, roomCodeInputField.text);
@@ -62,8 +67,10 @@ public class ConnectionManager : MonoBehaviour
         };
     }
 
-    private void OnRoomCodeChanged(string value)
+    private void OnRoomCodeAndPlayerNameChanged(string value)
     {
-        connectButton.interactable = value.Length >= minRoomCodeLength;
+        bool roomCodeValid = roomCodeInputField.text.Length >= minRoomCodeLength;
+        bool playerNameValid = playerNameInputField.text.Length >= minPlayerNameLength;
+        connectButton.interactable = roomCodeValid && playerNameValid;
     }
 }
