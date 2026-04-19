@@ -45,24 +45,32 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     private Vector3 GetSpawnPosition()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        int sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        bool isTaskScene = sceneIndex == 2 || sceneIndex == 3;
+
+        if (isTaskScene)
         {
             return NetworkManager.Instance.IsGuide
-                ? new Vector3(-0.7f, 0f, 1.6f)
-                : new Vector3(-4.7f, 0f, 1.6f);
+                ? new Vector3(-0.7f, 0f, 1.6f)   // Guide / Player A
+                : new Vector3(-4.7f, 0f, 1.6f);  // Mover / Player B
         }
-        return Vector3.zero; // default for Warmup and Task 2
+
+        return Vector3.zero; // Warmup default
     }
 
     private Quaternion GetSpawnRotation()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        int sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        bool isTaskScene = sceneIndex == 2 || sceneIndex == 3;
+
+        if (isTaskScene)
         {
             return NetworkManager.Instance.IsGuide
-                ? Quaternion.Euler(0f, -90f, 0f)
-                : Quaternion.Euler(0f, 90f, 0f);
+                ? Quaternion.Euler(0f, -90f, 0f)  // Guide / Player A
+                : Quaternion.Euler(0f, 90f, 0f);  // Mover / Player B
         }
-        return Quaternion.identity;
+
+        return Quaternion.identity; // Warmup default
     }
 
     #region Unsed INetworkRunnerCallbacks
