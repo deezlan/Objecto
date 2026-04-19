@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ConnectionManager : MonoBehaviour
 {
+    [SerializeField] private int minRoomCodeLength = 1;
     [SerializeField] private TMP_InputField roomCodeInputField;
     [SerializeField] private TMP_Dropdown scenarioDropdown; // 0=Warmup, 1=Task 1, 2=Task 2
     [SerializeField] private TMP_Dropdown roleDropdown;     // 0=Guide, 1=Mover
@@ -14,6 +15,8 @@ public class ConnectionManager : MonoBehaviour
     private void Start()
     {
         connectButton.onClick.AddListener(ConnectRoom);
+        roomCodeInputField.onValueChanged.AddListener(OnRoomCodeChanged);
+        connectButton.interactable = false; // disabled until minimum met
     }
 
     public void ConnectRoom()
@@ -57,5 +60,10 @@ public class ConnectionManager : MonoBehaviour
             2 => 3, // Task 2 scene
             _ => 1
         };
+    }
+
+    private void OnRoomCodeChanged(string value)
+    {
+        connectButton.interactable = value.Length >= minRoomCodeLength;
     }
 }
