@@ -9,14 +9,24 @@ public class NetworkedGrabbable : MonoBehaviour
     private NetworkObject _networkObject;
     private Rigidbody _rigidbody;
 
+    private void Start()
+    {
+        bool isTask1 = SceneManager.GetActiveScene().buildIndex == 2;
+        if (isTask1 && NetworkManager.Instance.IsGuide)
+        {
+            GetComponent<XRGrabInteractable>().enabled = false;
+            return;
+        }
+
+        var grab = GetComponent<XRGrabInteractable>();
+        grab.selectEntered.AddListener(OnGrab);
+        grab.selectExited.AddListener(OnRelease);
+    }
+
     private void Awake()
     {
         _networkObject = GetComponent<NetworkObject>();
         _rigidbody = GetComponent<Rigidbody>();
-        
-        var grab = GetComponent<XRGrabInteractable>();
-        grab.selectEntered.AddListener(OnGrab);
-        grab.selectExited.AddListener(OnRelease);
     }
 
     private void OnGrab(SelectEnterEventArgs args)
