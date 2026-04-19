@@ -7,8 +7,7 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
-    [SerializeField]
-    private NetworkPrefabRef playerPrefab;
+    [SerializeField] private NetworkPrefabRef playerPrefab;
 
     // Dictionary of spawned user prefabs, to destroy them on disconnection
     private Dictionary<PlayerRef, NetworkObject> _spawnedUsers = new Dictionary<PlayerRef, NetworkObject>();
@@ -46,24 +45,32 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     private Vector3 GetSpawnPosition()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        int sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        bool isTaskScene = sceneIndex == 2 || sceneIndex == 3;
+
+        if (isTaskScene)
         {
             return NetworkManager.Instance.IsGuide
-                ? new Vector3(0f, 0f, 1.2f)
-                : new Vector3(0f, 0f, -1.2f);
+                ? new Vector3(-0.7f, 0f, 1.6f)   // Guide / Player A
+                : new Vector3(-4.7f, 0f, 1.6f);  // Mover / Player B
         }
-        return Vector3.zero; // default for Warmup and Task 2
+
+        return Vector3.zero; // Warmup default
     }
 
     private Quaternion GetSpawnRotation()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
+        int sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        bool isTaskScene = sceneIndex == 2 || sceneIndex == 3;
+
+        if (isTaskScene)
         {
             return NetworkManager.Instance.IsGuide
-                ? Quaternion.Euler(0f, 180f, 0f)
-                : Quaternion.identity;
+                ? Quaternion.Euler(0f, -90f, 0f)  // Guide / Player A
+                : Quaternion.Euler(0f, 90f, 0f);  // Mover / Player B
         }
-        return Quaternion.identity;
+
+        return Quaternion.identity; // Warmup default
     }
 
     #region Unsed INetworkRunnerCallbacks
@@ -89,65 +96,50 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
     {
- 
     }
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
- 
     }
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
     {
- 
     }
 
     public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
     {
- 
     }
 
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
     {
- 
     }
-
     
-
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress)
     {
- 
     }
 
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data)
     {
- 
     }
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
- 
     }
 
     public void OnSceneLoadStart(NetworkRunner runner)
     {
- 
     }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
- 
     }
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
- 
     }
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
     {
- 
     }
     #endregion
-
 }

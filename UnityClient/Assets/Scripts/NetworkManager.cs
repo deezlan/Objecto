@@ -13,6 +13,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     // Creating a singleton
     public static NetworkManager Instance { get; private set; }
     public NetworkRunner Runner { get; private set; }
+    public string RoomCode { get; private set; }
+    public string PlayerName { get; private set; } = "Player";
     public bool IsGuide { get; private set; } = true;
 
     [SerializeField] private GameObject _runnerPrefab;
@@ -44,10 +46,11 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         await Connect(roomCode);
     }
 
-    public void SetSessionConfig(int sceneIndex, bool isGuide)
+    public void SetSessionConfig(int sceneIndex, bool isGuide, string roomCode)
     {
         _targetSceneIndex = sceneIndex;
         IsGuide = isGuide;
+        RoomCode = roomCode;
     }
 
     public void CreateRunner()
@@ -79,6 +82,32 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         await Runner.StartGame(args);
     }
 
+    public void SetPlayerName(string name)
+    {
+        PlayerName = string.IsNullOrWhiteSpace(name) ? "Player" : name;
+    }
+
+    public string GetScenarioName()
+    {
+        return _targetSceneIndex switch
+        {
+            1 => "Warmup",
+            2 => "Task 1",
+            3 => "Task 2",
+            _ => "Unknown"
+        };
+    }
+
+    public string GetRoleName()
+    {
+        return _targetSceneIndex switch
+        {
+            2 => IsGuide ? "Guide" : "Mover",
+            3 => IsGuide ? "Player A" : "Player B",
+            _ => ""
+        };
+    }
+
     #region INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
@@ -99,7 +128,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
         Debug.Log("<<<<<<< Runner Shutdown >>>>>>>>");
-
     }
     #endregion
 
@@ -144,8 +172,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     {
     }
 
-    
-
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress)
     {
     }
@@ -165,7 +191,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
     }
-
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
     {
