@@ -24,6 +24,9 @@ public class ConnectionManager : MonoBehaviour
 
     public void ConnectRoom()
     {
+        connectButton.interactable = false; // prevent double press
+        connectButton.onClick.RemoveListener(ConnectRoom); // remove listener entirely
+
         NetworkManager.Instance.SetPlayerName(playerNameInputField.text);
 
         int sceneIndex = GetSceneIndex();
