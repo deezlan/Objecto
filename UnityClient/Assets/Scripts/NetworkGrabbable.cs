@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NetworkObject))]
-public class NetworkedGrabbable : NetworkBehaviour
+public class NetworkedGrabbable : NetworkBehaviour, IStateAuthorityChanged
 {
     private Rigidbody _rigidbody;
     private bool _pendingGrab = false;
