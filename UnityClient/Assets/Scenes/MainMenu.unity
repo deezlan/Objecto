@@ -2409,7 +2409,7 @@ GameObject:
   - component: {fileID: 506202590}
   - component: {fileID: 506202589}
   m_Layer: 5
-  m_Name: ScenarioText
+  m_Name: RoomTypeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2454,7 +2454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Scenario:'
+  m_text: 'room type:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -3804,7 +3804,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5826,7 +5826,7 @@ GameObject:
   - component: {fileID: 1307057431}
   - component: {fileID: 1307057430}
   m_Layer: 5
-  m_Name: SceneDropdown
+  m_Name: RoomTypeDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5906,9 +5906,9 @@ MonoBehaviour:
     m_Options:
     - m_Text: Warmup
       m_Image: {fileID: 0}
-    - m_Text: Task 1
+    - m_Text: Scenario 1
       m_Image: {fileID: 0}
-    - m_Text: Task 2
+    - m_Text: Scenario 2
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
