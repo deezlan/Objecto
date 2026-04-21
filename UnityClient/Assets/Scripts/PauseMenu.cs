@@ -17,6 +17,8 @@ public class PauseMenu : MonoBehaviour
 
     private Camera _camera;
     private bool _isPaused = false;
+    private bool _rayInteractorsInitialised = false;
+    private XRRayInteractor[] _rayInteractors;
 
     private void OnEnable()
     {
@@ -29,10 +31,18 @@ public class PauseMenu : MonoBehaviour
         pauseAction.action.performed -= TogglePause;
     }
 
+    private void SetRayInteractors(bool enabled)
+    {
+        if (_rayInteractors == null) return;
+        foreach (var ray in _rayInteractors)
+            ray.enabled = enabled;
+    }
+
     private void TogglePause(InputAction.CallbackContext ctx)
     {
         _isPaused = !_isPaused;
         menuCanvas.SetActive(_isPaused);
+        SetRayInteractors(_isPaused);
 
         if(_isPaused)
             UpdateInfoDisplay();
@@ -51,6 +61,16 @@ public class PauseMenu : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!_rayInteractorsInitialised)
+        {
+            _rayInteractors = FindObjectsOfType<XRRayInteractor>();
+            if (_rayInteractors != null && _rayInteractors.Length > 0)
+            {
+                _rayInteractorsInitialised = true;
+                SetRayInteractors(false); // disable immediately on first find
+            }
+        }
+
         if (_camera == null)
         {
             _camera = Camera.main;
@@ -70,8 +90,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        if (!_isPaused) return;
         _isPaused = false;
         menuCanvas.SetActive(false);
+        SetRayInteractors(false);
     }
 
     public async void Disconnect()
