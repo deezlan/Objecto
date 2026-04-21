@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
@@ -31,6 +32,11 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
             // Keep track of the player avatars so we can remove it when they disconnect
             _spawnedUsers.Add(player, networkPlayerObject);
         }
+
+        // Start logging FPS and ping once the local player has joined the session
+        if (player == runner.LocalPlayer)
+            SessionLogger.Instance?.StartLogging(
+                SceneManager.GetActiveScene().name);
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

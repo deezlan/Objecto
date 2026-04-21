@@ -76,6 +76,7 @@ public class PauseMenu : MonoBehaviour
 
     public async void Disconnect()
     {
+        SessionLogger.Instance?.StopLogging();
         await NetworkManager.Instance.Shutdown();
         await Task.Delay(500); // give Photon time to close the session server-side
         SceneManager.LoadScene(0);
