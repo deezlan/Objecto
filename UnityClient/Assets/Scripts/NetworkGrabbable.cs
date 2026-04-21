@@ -4,12 +4,17 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NetworkObject))]
-public class NetworkedGrabbable : MonoBehaviour
+public class NetworkedGrabbable : NetworkBehaviour, IStateAuthorityChanged
 {
-    private NetworkObject _networkObject;
     private Rigidbody _rigidbody;
+    private bool _pendingGrab = false;
 
-    private void Start()
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    public override void Spawned()
     {
         bool isTask1 = SceneManager.GetActiveScene().buildIndex == 2;
         if (isTask1 && NetworkManager.Instance.IsGuide)
@@ -23,44 +28,44 @@ public class NetworkedGrabbable : MonoBehaviour
         grab.selectExited.AddListener(OnRelease);
     }
 
-    private void Awake()
-    {
-        _networkObject = GetComponent<NetworkObject>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     private void OnGrab(SelectEnterEventArgs args)
     {
-        if (!_networkObject.HasStateAuthority && _networkObject.StateAuthority != PlayerRef.None)
+        // Block grab if another player already holds it
+        if (!Object.HasStateAuthority && Object.StateAuthority != PlayerRef.None)
             return;
 
-        _rigidbody.isKinematic = false;
-        _rigidbody.useGravity = true;
-        _rigidbody.constraints = RigidbodyConstraints.None;
-        _networkObject.RequestStateAuthority();
+        _pendingGrab = true;
+        Object.RequestStateAuthority();
+    }
+
+    public void StateAuthorityChanged()
+    {
+        if (HasStateAuthority && _pendingGrab)
+        {
+            _pendingGrab = false;
+            _rigidbody.isKinematic = false;
+            _rigidbody.useGravity = true;
+            _rigidbody.constraints = RigidbodyConstraints.None;
+        }
     }
 
     private void OnRelease(SelectExitEventArgs args)
     {
-        
-        _rigidbody.velocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
+        bool isTask2 = SceneManager.GetActiveScene().buildIndex == 3;
 
-        bool isTask1 = SceneManager.GetActiveScene().buildIndex == 2;
-
-        if (isTask1)
+        if (isTask2)
         {
-            _rigidbody.useGravity = false;
-            _rigidbody.isKinematic = true;
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+            _rigidbody.useGravity = true;
+            _rigidbody.isKinematic = false;
         }
         else
         {
-            _rigidbody.useGravity = true;
-            _rigidbody.isKinematic = false;
-            _rigidbody.drag = 20f;
-            _rigidbody.angularDrag = 20f;
+            // Task 1 and Warmup: freeze in place
+            _rigidbody.useGravity = false;
+            _rigidbody.isKinematic = true;
         }
-
-        _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 }

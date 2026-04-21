@@ -132,13 +132,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1526092990194965098, guid: 494d1072afe81fe449dc0c5b43fb5099,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526092990194965098, guid: 494d1072afe81fe449dc0c5b43fb5099,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2630370209514585712, guid: 494d1072afe81fe449dc0c5b43fb5099,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630370209514585712, guid: 494d1072afe81fe449dc0c5b43fb5099,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130848738821370107, guid: 494d1072afe81fe449dc0c5b43fb5099,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3130848738821370107, guid: 494d1072afe81fe449dc0c5b43fb5099,
         type: 3}
@@ -202,6 +217,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4101112173780443809, guid: 494d1072afe81fe449dc0c5b43fb5099,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4101112173780443809, guid: 494d1072afe81fe449dc0c5b43fb5099,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -221,6 +241,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4101112173780443809, guid: 494d1072afe81fe449dc0c5b43fb5099,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 63535021}
+    - targetCorrespondingSourceObject: {fileID: 4101112173780443809, guid: 494d1072afe81fe449dc0c5b43fb5099,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 63535017}
     - targetCorrespondingSourceObject: {fileID: 4101112173780443809, guid: 494d1072afe81fe449dc0c5b43fb5099,
         type: 3}
@@ -234,10 +258,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 63535020}
-    - targetCorrespondingSourceObject: {fileID: 4101112173780443809, guid: 494d1072afe81fe449dc0c5b43fb5099,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 63535021}
   m_SourcePrefab: {fileID: 100100000, guid: 494d1072afe81fe449dc0c5b43fb5099, type: 3}
 --- !u!4 &63535014 stripped
 Transform:
@@ -291,12 +311,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 63535021}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -387,7 +408,7 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
+  m_AttachEaseInTime: 0
   m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -448,6 +469,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 63535019}
+  - {fileID: 63535020}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &63535019
 MonoBehaviour:
@@ -1057,7 +1079,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 2
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -1227,7 +1249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 268456590}
   - component: {fileID: 268456591}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1420,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1490,6 +1512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5500661605437975082, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5500661605437975082, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1497,6 +1524,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096225794911467613, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8096225794911467613, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
         type: 3}
@@ -1514,6 +1546,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5500661605437975082, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 569334987}
+    - targetCorrespondingSourceObject: {fileID: 5500661605437975082, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 569334983}
     - targetCorrespondingSourceObject: {fileID: 5500661605437975082, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
         type: 3}
@@ -1527,10 +1563,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 569334986}
-    - targetCorrespondingSourceObject: {fileID: 5500661605437975082, guid: 2db51a3ce7d7fe34a934d68f0c488f54,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 569334987}
   m_SourcePrefab: {fileID: 100100000, guid: 2db51a3ce7d7fe34a934d68f0c488f54, type: 3}
 --- !u!4 &569334980 stripped
 Transform:
@@ -1584,12 +1616,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 569334987}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -1680,7 +1713,7 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
+  m_AttachEaseInTime: 0
   m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -1741,6 +1774,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 569334985}
+  - {fileID: 569334986}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &569334985
 MonoBehaviour:
@@ -1959,6 +1993,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1504105867294326118, guid: c4769332a3574e543a8455feae3cc05d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504105867294326118, guid: c4769332a3574e543a8455feae3cc05d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2039,6 +2078,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8458478210381461421, guid: c4769332a3574e543a8455feae3cc05d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458478210381461421, guid: c4769332a3574e543a8455feae3cc05d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2050,6 +2094,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 885529832}
+    - targetCorrespondingSourceObject: {fileID: 1504105867294326118, guid: c4769332a3574e543a8455feae3cc05d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 885529837}
     - targetCorrespondingSourceObject: {fileID: 1504105867294326118, guid: c4769332a3574e543a8455feae3cc05d,
         type: 3}
       insertIndex: -1
@@ -2066,10 +2114,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 885529836}
-    - targetCorrespondingSourceObject: {fileID: 1504105867294326118, guid: c4769332a3574e543a8455feae3cc05d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 885529837}
   m_SourcePrefab: {fileID: 100100000, guid: c4769332a3574e543a8455feae3cc05d, type: 3}
 --- !u!4 &885529830 stripped
 Transform:
@@ -2123,12 +2167,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 885529837}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -2219,7 +2264,7 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
+  m_AttachEaseInTime: 0
   m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -2280,6 +2325,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 885529835}
+  - {fileID: 885529836}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &885529835
 MonoBehaviour:
@@ -2558,6 +2604,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 104213813}
     m_Modifications:
+    - target: {fileID: 664489801923019586, guid: 2fd3e07afe5b461490fb8e314976b1b0,
+        type: 3}
+      propertyPath: m_PhysicsLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 664489801923019586, guid: 2fd3e07afe5b461490fb8e314976b1b0,
+        type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6059725000919627127, guid: 2fd3e07afe5b461490fb8e314976b1b0,
         type: 3}
       propertyPath: m_Radius
@@ -3186,7 +3242,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 2
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -3414,6 +3470,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1163551093}
     m_Modifications:
+    - target: {fileID: 664489801923019586, guid: 2fd3e07afe5b461490fb8e314976b1b0,
+        type: 3}
+      propertyPath: m_PhysicsLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 664489801923019586, guid: 2fd3e07afe5b461490fb8e314976b1b0,
+        type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6059725000919627127, guid: 2fd3e07afe5b461490fb8e314976b1b0,
         type: 3}
       propertyPath: m_Radius
@@ -3559,6 +3625,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6778389945490785650, guid: c2f17a2926fbc774d990dd6e286d4fad,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778389945490785650, guid: c2f17a2926fbc774d990dd6e286d4fad,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -3639,6 +3710,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795102498530785269, guid: c2f17a2926fbc774d990dd6e286d4fad,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795102498530785269, guid: c2f17a2926fbc774d990dd6e286d4fad,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3658,6 +3734,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7795102498530785269, guid: c2f17a2926fbc774d990dd6e286d4fad,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1441971035}
+    - targetCorrespondingSourceObject: {fileID: 7795102498530785269, guid: c2f17a2926fbc774d990dd6e286d4fad,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1441971031}
     - targetCorrespondingSourceObject: {fileID: 7795102498530785269, guid: c2f17a2926fbc774d990dd6e286d4fad,
         type: 3}
@@ -3671,10 +3751,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1441971034}
-    - targetCorrespondingSourceObject: {fileID: 7795102498530785269, guid: c2f17a2926fbc774d990dd6e286d4fad,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1441971035}
   m_SourcePrefab: {fileID: 100100000, guid: c2f17a2926fbc774d990dd6e286d4fad, type: 3}
 --- !u!4 &1441971028 stripped
 Transform:
@@ -3728,12 +3804,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 1441971035}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -3824,7 +3901,7 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
+  m_AttachEaseInTime: 0
   m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -3885,6 +3962,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1441971033}
+  - {fileID: 1441971034}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &1441971033
 MonoBehaviour:
@@ -3958,7 +4036,7 @@ PrefabInstance:
     - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}
@@ -4031,6 +4109,7 @@ GameObject:
   - component: {fileID: 1565910126}
   - component: {fileID: 1565910125}
   - component: {fileID: 1565910128}
+  - component: {fileID: 1565910129}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -4078,7 +4157,7 @@ Transform:
   m_GameObject: {fileID: 1565910120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000093877316, z: -0, w: 1}
-  m_LocalPosition: {x: -2.301, y: 0.07799995, z: -3.989}
+  m_LocalPosition: {x: -2.5, y: 0.3, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4229,6 +4308,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &1565910129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565910120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ff0d84968a2764290fe80ebb6b8719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab:
+    RawGuidValue: f859190927d922f4585e494062e61e8f
 --- !u!1 &1577461020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4239,7 +4332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577461021}
   - component: {fileID: 1577461022}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4299,6 +4392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Left Terminator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466306517634800441, guid: b7ee10ba487867d47a2942e352102583,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9094329260281299331, guid: b7ee10ba487867d47a2942e352102583,
         type: 3}
@@ -4552,6 +4650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Right Terminator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599283048136764956, guid: 06cd9e9af97d88946893bd961c4d7f4f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5044,6 +5147,10 @@ PrefabInstance:
       value: a laptop
       objectReference: {fileID: 0}
     - target: {fileID: 1316731507923750, guid: ec15f5ae191975f4d8de236356aaec36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316731507923750, guid: ec15f5ae191975f4d8de236356aaec36, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5153,12 +5260,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 2008966351}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -5249,7 +5357,7 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
+  m_AttachEaseInTime: 0
   m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -5360,6 +5468,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2008966349}
+  - {fileID: 2008966352}
   ForceRemoteRenderTimeframe: 0
 --- !u!64 &2008966351
 MeshCollider:
@@ -5461,7 +5570,7 @@ PrefabInstance:
     - target: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

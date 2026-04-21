@@ -1446,7 +1446,7 @@ PrefabInstance:
     - target: {fileID: 2314523925997562667, guid: 763522a439f36ac4d881f5652181a2ee,
         type: 3}
       propertyPath: m_KeyboardOffset.y
-      value: -0.35
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2314523925997562667, guid: 763522a439f36ac4d881f5652181a2ee,
         type: 3}
@@ -2409,7 +2409,7 @@ GameObject:
   - component: {fileID: 506202590}
   - component: {fileID: 506202589}
   m_Layer: 5
-  m_Name: ScenarioText
+  m_Name: RoomTypeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2454,7 +2454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Scenario:'
+  m_text: 'room type:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -3804,7 +3804,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5826,7 +5826,7 @@ GameObject:
   - component: {fileID: 1307057431}
   - component: {fileID: 1307057430}
   m_Layer: 5
-  m_Name: SceneDropdown
+  m_Name: RoomTypeDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5906,9 +5906,9 @@ MonoBehaviour:
     m_Options:
     - m_Text: Warmup
       m_Image: {fileID: 0}
-    - m_Text: Task 1
+    - m_Text: Scenario 1
       m_Image: {fileID: 0}
-    - m_Text: Task 2
+    - m_Text: Scenario 2
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6912,7 +6912,7 @@ PrefabInstance:
     - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}
@@ -7027,7 +7027,7 @@ Transform:
   m_GameObject: {fileID: 1565910120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000043213367, z: -0, w: 1}
-  m_LocalPosition: {x: -2.301, y: 0.469, z: 0.442}
+  m_LocalPosition: {x: -2.301, y: 0.5, z: 0.442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7246,6 +7246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Left Terminator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466306517634800441, guid: b7ee10ba487867d47a2942e352102583,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9094329260281299331, guid: b7ee10ba487867d47a2942e352102583,
         type: 3}
@@ -7690,6 +7695,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1724264793}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1732066646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1732066647}
+  - component: {fileID: 1732066648}
+  m_Layer: 0
+  m_Name: SessionLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1732066647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732066646}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0166569, y: 2.5663638, z: -1.4373732}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1732066648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732066646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c66d6a2213a144793fa49fe410b28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1733677988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7946,6 +7995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Right Terminator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599283048136764956, guid: 06cd9e9af97d88946893bd961c4d7f4f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8798,7 +8852,7 @@ PrefabInstance:
     - target: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9353,6 +9407,7 @@ SceneRoots:
   - {fileID: 152981952}
   - {fileID: 1446386910}
   - {fileID: 118467131}
+  - {fileID: 1732066647}
   - {fileID: 1565910123}
   - {fileID: 1443537892}
   - {fileID: 1452957496}

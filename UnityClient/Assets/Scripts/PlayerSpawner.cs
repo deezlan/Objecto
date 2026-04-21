@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
@@ -17,6 +18,12 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         NetworkManager.Instance.Runner.AddCallbacks(this);
     }
 
+    private Transform GetXROrigin()
+    {
+        var xrOrigin = FindObjectOfType<Unity.XR.CoreUtils.XROrigin>();
+        return xrOrigin != null ? xrOrigin.transform : null;
+    }
+
     #region INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
@@ -25,12 +32,25 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Vector3 spawnPosition = GetSpawnPosition();
             Quaternion spawnRotation = GetSpawnRotation();
 
+            // Move XR Origin to match spawn position so camera starts in the right place
+            Transform xrOrigin = GetXROrigin();
+            if (xrOrigin != null)
+            {
+                xrOrigin.position = spawnPosition;
+                xrOrigin.rotation = spawnRotation;
+            }
+
             NetworkObject networkPlayerObject = runner.Spawn(
                 playerPrefab, spawnPosition, spawnRotation, player);
 
             // Keep track of the player avatars so we can remove it when they disconnect
             _spawnedUsers.Add(player, networkPlayerObject);
         }
+
+        // Start logging FPS and ping once the local player has joined the session
+        if (player == runner.LocalPlayer)
+            SessionLogger.Instance?.StartLogging(
+                SceneManager.GetActiveScene().name);
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -51,11 +71,11 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (isTaskScene)
         {
             return NetworkManager.Instance.IsGuide
-                ? new Vector3(-0.7f, 0f, 1.6f)   // Guide / Player A
-                : new Vector3(-4.7f, 0f, 1.6f);  // Mover / Player B
+                ? new Vector3(-0.7f, 0.3f, 1.6f)   // Guide / Player A
+                : new Vector3(-4.7f, 0.3f, 1.6f);  // Mover / Player B
         }
 
-        return Vector3.zero; // Warmup default
+        return new Vector3(-2.5f, 0.3f, -4.0f); // Warmup default
     }
 
     private Quaternion GetSpawnRotation()

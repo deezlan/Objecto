@@ -17,9 +17,24 @@ public class PauseMenu : MonoBehaviour
 
     private Camera _camera;
     private bool _isPaused = false;
+    private bool _rayInteractorsInitialised = false;
+    private XRRayInteractor[] _rayInteractors;
+    private NetworkObject _networkObject;
 
-    private void OnEnable()
+    private void Awake()
     {
+        _networkObject = GetComponentInParent<NetworkObject>();
+    }
+
+    private void Start()
+    {
+        if (_networkObject != null && !_networkObject.HasStateAuthority)
+        {
+            enabled = false;
+            menuCanvas.SetActive(false);
+            return;
+        }
+
         pauseAction.action.performed += TogglePause;
         pauseAction.action.Enable();
     }
@@ -29,13 +44,37 @@ public class PauseMenu : MonoBehaviour
         pauseAction.action.performed -= TogglePause;
     }
 
+    private void SetRayInteractors(bool enabled)
+    {
+        if (_rayInteractors == null) return;
+        foreach (var ray in _rayInteractors)
+            ray.enabled = enabled;
+    }
+
     private void TogglePause(InputAction.CallbackContext ctx)
     {
         _isPaused = !_isPaused;
-        menuCanvas.SetActive(_isPaused);
 
         if(_isPaused)
+        {
+            PositionMenuInFrontOfCamera();
             UpdateInfoDisplay();
+        }
+
+        menuCanvas.SetActive(_isPaused);
+        SetRayInteractors(_isPaused);
+    }
+
+    private void PositionMenuInFrontOfCamera()
+    {
+        if (_camera == null) return;
+
+        Vector3 forward = _camera.transform.forward;
+        forward.y = 0; // keep upright, ignore camera tilt
+        forward.Normalize();
+
+        transform.position = _camera.transform.position + forward * 1.5f;
+        transform.rotation = Quaternion.LookRotation(forward);
     }
 
     private void UpdateInfoDisplay()
@@ -51,6 +90,16 @@ public class PauseMenu : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!_rayInteractorsInitialised)
+        {
+            _rayInteractors = FindObjectsOfType<XRRayInteractor>();
+            if (_rayInteractors != null && _rayInteractors.Length > 0)
+            {
+                _rayInteractorsInitialised = true;
+                SetRayInteractors(false); // disable immediately on first find
+            }
+        }
+
         if (_camera == null)
         {
             _camera = Camera.main;
@@ -61,21 +110,19 @@ public class PauseMenu : MonoBehaviour
                     canvas.worldCamera = _camera;
             }
         }
-
-        if (!_isPaused || _camera == null) return;
-
-        transform.position = _camera.transform.position + _camera.transform.forward * 1.5f;
-        transform.rotation = Quaternion.LookRotation(transform.position - _camera.transform.position);
     }
 
     public void Resume()
     {
+        if (!_isPaused) return;
         _isPaused = false;
         menuCanvas.SetActive(false);
+        SetRayInteractors(false);
     }
 
     public async void Disconnect()
     {
+        SessionLogger.Instance?.StopLogging();
         await NetworkManager.Instance.Shutdown();
         await Task.Delay(500); // give Photon time to close the session server-side
         SceneManager.LoadScene(0);

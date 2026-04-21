@@ -37,6 +37,12 @@ public class ZoneManager : MonoBehaviour
             // Task 2 setup
             guideZones.SetActive(false);
             moverZones.SetActive(false);
+
+            if (NetworkManager.Instance.IsGuide) {
+                guideZones.SetActive(true);
+            } else {
+                moverZones.SetActive(true);
+            }
             _activeZones = NetworkManager.Instance.IsGuide 
                 ? guideZones : moverZones; // activate the parent
             SetAllZones(false);            // but hide all children initially
