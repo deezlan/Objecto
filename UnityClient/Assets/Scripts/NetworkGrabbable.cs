@@ -51,13 +51,12 @@ public class NetworkedGrabbable : NetworkBehaviour, IStateAuthorityChanged
 
     private void OnRelease(SelectExitEventArgs args)
     {
-        _rigidbody.velocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
-
         bool isTask2 = SceneManager.GetActiveScene().buildIndex == 3;
 
         if (isTask2)
         {
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
             transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
             _rigidbody.useGravity = true;
             _rigidbody.isKinematic = false;
