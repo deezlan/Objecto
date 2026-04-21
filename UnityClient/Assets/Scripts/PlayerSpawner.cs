@@ -13,11 +13,6 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     // Dictionary of spawned user prefabs, to destroy them on disconnection
     private Dictionary<PlayerRef, NetworkObject> _spawnedUsers = new Dictionary<PlayerRef, NetworkObject>();
 
-    void Start()
-    {
-        NetworkManager.Instance.Runner.AddCallbacks(this);
-    }
-
     private Transform GetXROrigin()
     {
         var xrOrigin = FindObjectOfType<Unity.XR.CoreUtils.XROrigin>();
