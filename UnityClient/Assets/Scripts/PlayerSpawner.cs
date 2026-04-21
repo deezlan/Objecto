@@ -75,7 +75,7 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
                 : new Vector3(-4.7f, 0f, 1.6f);  // Mover / Player B
         }
 
-        return Vector3.zero; // Warmup default
+        return new Vector3(-2.5f, 0.3f, -4.0f); // Warmup default
     }
 
     private Quaternion GetSpawnRotation()
