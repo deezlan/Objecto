@@ -57,7 +57,6 @@ public class NetworkedGrabbable : NetworkBehaviour, IStateAuthorityChanged
         {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
-            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
             _rigidbody.useGravity = true;
             _rigidbody.isKinematic = false;
         }
