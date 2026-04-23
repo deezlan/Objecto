@@ -13,11 +13,6 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     // Dictionary of spawned user prefabs, to destroy them on disconnection
     private Dictionary<PlayerRef, NetworkObject> _spawnedUsers = new Dictionary<PlayerRef, NetworkObject>();
 
-    void Start()
-    {
-        NetworkManager.Instance.Runner.AddCallbacks(this);
-    }
-
     private Transform GetXROrigin()
     {
         var xrOrigin = FindObjectOfType<Unity.XR.CoreUtils.XROrigin>();
@@ -71,11 +66,11 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (isTaskScene)
         {
             return NetworkManager.Instance.IsGuide
-                ? new Vector3(-0.7f, 0.3f, 1.6f)   // Guide / Player A
-                : new Vector3(-4.7f, 0.3f, 1.6f);  // Mover / Player B
+                ? new Vector3(-0.7f, 0.2f, 1.6f)   // Guide / Player A
+                : new Vector3(-4.7f, 0.2f, 1.6f);  // Mover / Player B
         }
 
-        return new Vector3(-2.5f, 0.3f, -4.0f); // Warmup default
+        return new Vector3(-2.5f, 0.2f, -4.0f); // Warmup default
     }
 
     private Quaternion GetSpawnRotation()
