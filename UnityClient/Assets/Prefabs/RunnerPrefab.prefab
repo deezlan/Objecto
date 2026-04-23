@@ -151,7 +151,7 @@ MonoBehaviour:
   agc: 1
   agcCompressionGain: 9
   agcTargetLevel: 3
-  vad: 1
+  vad: 0
   highPass: 0
   noiseSuppression: 1
   reverseStreamDelayMs: 120

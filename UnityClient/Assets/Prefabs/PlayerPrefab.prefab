@@ -2459,8 +2459,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playDelayConfig:
-    Low: 200
-    High: 200
+    Low: 100
+    High: 100
     Max: 1000
     SpeedUpPerc: 5
   restartOnDeviceChange: 1
