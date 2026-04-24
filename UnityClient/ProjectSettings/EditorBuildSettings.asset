@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ClassroomScene.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Warmup.unity
+    guid: 594511b64ccd5e147a401839a3c45821
+  - enabled: 1
+    path: Assets/Scenes/Scenario 1.unity
+    guid: c110901d4154014419eb1084aa0e6471
+  - enabled: 1
+    path: Assets/Scenes/Scenario 2.unity
+    guid: c904e086a40680148bef254e0d159995
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 37b9a66f4a9cd514cb83ae4995506b29,
       type: 2}
